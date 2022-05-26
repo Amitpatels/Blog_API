@@ -5,6 +5,7 @@ import com.codewithamit.blog.entities.Post;
 import com.codewithamit.blog.entities.User;
 import com.codewithamit.blog.exceptions.ResourceNotFoundException;
 import com.codewithamit.blog.payloads.PostDto;
+import com.codewithamit.blog.payloads.PostResponse;
 import com.codewithamit.blog.repositories.CategoryRepository;
 import com.codewithamit.blog.repositories.PostRepository;
 import com.codewithamit.blog.repositories.UserRepository;
@@ -64,7 +65,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> getAllPost(Integer pageNumber, Integer pageSize) {
+    public PostResponse getAllPost(Integer pageNumber, Integer pageSize) {
 
         Pageable pageable = PageRequest.of(pageNumber,pageSize);
 
@@ -74,7 +75,15 @@ public class PostServiceImpl implements PostService {
 
         List<PostDto> postDtos = posts.stream().map((post)-> this.modelMapper.map(post,PostDto.class)).collect(Collectors.toList());
 
-        return postDtos;
+        PostResponse postResponse = new PostResponse();
+        postResponse.setPageNumber(pagePost.getNumber());
+        postResponse.setContent(postDtos);
+        postResponse.setTotalElements(pagePost.getTotalPages());
+        postResponse.setPageSize(pagePost.getSize());
+        postResponse.setTotalPages(pagePost.getTotalPages());
+        postResponse.setLastPage(pagePost.isLast());
+
+        return postResponse;
     }
 
     @Override

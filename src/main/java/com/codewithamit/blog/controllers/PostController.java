@@ -1,6 +1,6 @@
 package com.codewithamit.blog.controllers;
 
-import com.codewithamit.blog.config.AppConstant;
+import com.codewithamit.blog.constant.AppConstant;
 import com.codewithamit.blog.payloads.ApiResponse;
 import com.codewithamit.blog.payloads.PostDto;
 import com.codewithamit.blog.payloads.PostResponse;

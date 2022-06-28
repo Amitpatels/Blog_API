@@ -3,19 +3,17 @@ package com.codewithamit.blog.exceptions;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
-public class ResourceNotFoundException extends RuntimeException{
+@Setter
+public class UserNotFoundException extends RuntimeException {
     String resourcesName;
     String fieldName;
-    long fieldValue;
+    String fieldValue;
 
-
-    public ResourceNotFoundException(String resourcesName, String fieldName, long fieldValue) {
+    public UserNotFoundException(String resourcesName, String fieldName, String fieldValue) {
         super(String.format("%s not found with %s : %s", resourcesName,fieldName,fieldValue ));
         this.resourcesName = resourcesName;
         this.fieldName = fieldName;
         this.fieldValue = fieldValue;
     }
-
 }

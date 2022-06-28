@@ -1,4 +1,4 @@
-package com.codewithamit.blog.config;
+package com.codewithamit.blog.constant;
 
 public class AppConstant {
 
